@@ -1,0 +1,48 @@
+version: '3.7'
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres:
+    driver: local
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ccxc/ael-api-nomina-base
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: postgres
+#    restart: always
+    volumes:
+      - ~/.ccxc/postgres_base:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: secret
+#    restart: always
+    volumes:
+      - ~/.ccxc/mongo_base:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
