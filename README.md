@@ -17,24 +17,25 @@ This is a repository intended to serve as a starting point if you want to bootst
 
 ```
 # install dependencies
-npm install
+npm install --legacy-peer-deps
 
-# run in dev mode on port 3000
+# copy .env.example to .env
+cp .env.example .env
+
+# run in dev mode on port 4000
 npm run start:dev
 
 # generate production build
 npm run build
 
-# run generated content in dist folder on port 3000
+# run generated content in dist folder on port 4000
 npm run start:prod
 ```
 
 ## Running the app in sites
 
-Execute:
-
 ```
-# Create or up container 
+# Create or up container
 docker-compose up -d
 # Or
 # Rebuild and up container
@@ -58,27 +59,14 @@ npm run lint
 # fix lint issues
 npm run lint:fix
 ```
+
 ## Environment variables
 
-| Variable             | Description                          | Default                                                                           |
-|----------------------|--------------------------------------|-----------------------------------------------------------------------------------|
-| PORT                 | Port to run the server               | 3000                                                                              |
-| DB_TYPE              | Database type                        | postgres                                                                          |
-| DB_HOST              | Database host                        | localhost                                                                         |
-| DB_PORT              | Database port                        | 5432                                                                              |
-| DB_DATABASE          | Database name                        | postgres                                                                          |
-| DB_USERNAME          | Database username                    | postgres                                                                          |
-| DB_PASSWORD          | Database password                    | postgres                                                                          |
-| DEBUG                | Debug mode                           | false                                                                             |
-| URL_GATEWAY          | URL Gateway                          | http://localhost:3000                                                             |
-| URL_PILA             | URL Pila                             | https://marketplacepreproduccion.aportesenlinea.com                               |
-| PILA_TRANSVERSALES   | pila transversales                   | Transversales.Servicios.Fachada                                                   |
-| PILA_FANAIA          | pila FANIA                           | Fanaia.Servicios.Fachada                                                          |
-| APPLICATION_TEST     | Application test, GUUID PILA SERVICE | E2271FA7-0FCA-4293-BF6D-53414286FDB0                                              |
-| SCHEDULED_JOB        | Scheduled job, cron expression       | */10 * * * * *                                                                    |
-| QUEUS_NUMBER         | Number of queues                     | 5                                                                                 |
-| QUEUES_ATTEMPTS      | Number of attempts                   | 1                                                                                 |
-| QUEUES_BACKOFF       | Backoff time                         | 1000                                                                              |
-| URL_RETORNO_PSE_PILA | URL Retorno PSE Pila                 | http://localhost:3000                                                             |
-| PILA_FANAIA_PAGOS    | Pila Fanaia Pagos                    | Fanaia.Pagos.Servicios.Fachada                                                    |
-| URL_REPORTES_PILA    | URL Pila Certificado de aportes      | https://aplicacionespruebas.aportesenlinea.com/Reportes.ServicioWeb               |
+| Variable    | Description                    | Default                    |
+| ----------- | ------------------------------ | -------------------------- |
+| PORT        | Port to run the server         | 4000                       |
+| DATABASE    | Name database                  | aelTraceability            |
+| MONGO_URL   | Url to connect to the database | mongodb://localhost:27017/ |
+| DEBUG       | Debug mode                     | false                      |
+| ENVIROMENT  | Enviroment (Dev, Qa, Prod)     | Qa                         |
+| URL_GATEWAY | URL Gateway                    | http://localhost:8080      |
